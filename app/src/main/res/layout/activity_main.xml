@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:background="@drawable/back"
+    >
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="VectorDrawableCompat" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtInputUsername"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="Username"
+        android:ems="10"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/username"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtInputPassword"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="Mot de passe"
+        android:ems="10"
+        android:layout_marginTop="15dp"
+        android:textSize="15sp"
+        android:textColorHint="@color/black"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/password"
+
+
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer Mot de passe !"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_connect"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_round"
+        android:text="Connecter"
+        android:textSize="14sp"
+        android:layout_marginTop="40dp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Vous n'avez pas un compte ? "
+        android:textColor="@color/Rougeandri"
+        android:textSize="13dp" />
+    <TextView
+        android:id="@+id/tx_creer_un_compte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="@color/RougeVif"
+
+        android:text="Creer un compte  !"
+
+        />
+
+
+</LinearLayout>
