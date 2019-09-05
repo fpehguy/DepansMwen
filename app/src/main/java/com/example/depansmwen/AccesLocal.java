@@ -54,7 +54,7 @@ public class AccesLocal {
         else return false;
     }
 
-    public boolean AddCategorie(String categorie, String prix, String devise, String note, Long date, String user){
+    public boolean AddCategorie(String categorie, String prix, String devise, String note, String date, String user){
         bd = accesBd.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("categorie", categorie);

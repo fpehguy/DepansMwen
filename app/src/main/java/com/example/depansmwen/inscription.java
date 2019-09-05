@@ -51,9 +51,8 @@ public class inscription extends AppCompatActivity {
                           if (checkUsername == true){
                               Boolean insert = accesLocal.signup(nom, prenom, username, password);
                               if (insert == true){
-                                  Toast.makeText(inscription.this, "enregistrement!!!", Toast.LENGTH_SHORT).show();
-                                  startActivity(new Intent(inscription.this, accueil.class));
-                                  finish();
+                                  Toast.makeText(inscription.this, "enregistrement avec succes!!!  Maintenant Login...", Toast.LENGTH_LONG).show();
+                                  startActivity(new Intent(inscription.this, MainActivity.class));
                               }
                           }else {
                               Toast.makeText(inscription.this, "Le pseudo "+ username + " est deja utilise!!!", Toast.LENGTH_SHORT).show();

@@ -67,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String getTxtInputUsername() {
-        return username;
-    }
-
     public static String userName() {
         return username;
     }

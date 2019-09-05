@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -36,6 +37,8 @@ public class accueil extends AppCompatActivity {
     long dateSystem;
     private static AccesLocal accesLocal;
     static MainActivity user;
+    SimpleDateFormat sdf;
+    String currentDateandTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class accueil extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         dateSystem = System.currentTimeMillis();
+         sdf = new SimpleDateFormat("yyyy.MM.dd");
+         currentDateandTime = sdf.format(new Date());
         accesLocal = new AccesLocal(accueil.this);
     }
 
@@ -132,7 +137,7 @@ public class accueil extends AppCompatActivity {
                     if (textCategorie.equals("") ){
                         Toast.makeText(accueil.this, "Tous les champs sont obligatoires!!!"+textCategorie+" et "+prix, Toast.LENGTH_SHORT).show();
                     }else{
-                            Boolean insert = accesLocal.AddCategorie(textCategorie, prix, textDevise, note, dateSystem, String.valueOf(user.userName()));
+                            Boolean insert = accesLocal.AddCategorie(textCategorie, prix, textDevise, note, currentDateandTime, String.valueOf(user.userName()));
                             if (insert == true){
                                 Toast.makeText(accueil.this, "enregistrement Categorie avec succes!!!", Toast.LENGTH_SHORT).show();
                             }else{
