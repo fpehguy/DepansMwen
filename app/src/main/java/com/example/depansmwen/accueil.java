@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,30 +13,45 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Date;
 
 
 public class accueil extends AppCompatActivity {
+
+    Spinner spinnerCategorie;
+    private TextInputLayout etPrix;
+    Spinner spinnerDevise;
+    private TextInputLayout etNote;
+    long dateSystem;
+    private static AccesLocal accesLocal;
+    static MainActivity user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil1);
         getSupportActionBar().setTitle("Vue d'ensemble ...");
+        Toast.makeText(this," "+String.valueOf(user.userName()),Toast.LENGTH_LONG).show();
         //getSupportActionBar().hide();
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        dateSystem = System.currentTimeMillis();
+        accesLocal = new AccesLocal(accueil.this);
     }
 
 
@@ -95,11 +111,50 @@ public class accueil extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.adddepense) {
-
             Toast.makeText(this,"Ajouter Depense",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this,Depense.class));
-            return true;
+            final AlertDialog.Builder depCategorie = new AlertDialog.Builder(accueil.this);
+            depCategorie.setTitle("Ajouter une Depense");
+            View view=getLayoutInflater().inflate(R.layout.depense,null);
 
+            spinnerCategorie = (Spinner) view.findViewById(R.id.spinnerCategorie);
+            etPrix = (TextInputLayout) view.findViewById(R.id.etPrix);
+            spinnerDevise = (Spinner) view.findViewById(R.id.spinnerDevise);
+            etNote = (TextInputLayout) view.findViewById(R.id.etNote);
+
+            depCategorie.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String textCategorie = String.valueOf(spinnerCategorie.getSelectedItem());
+                    String textDevise = String.valueOf(spinnerDevise.getSelectedItem());
+                     String prix= etPrix.getEditText().getText().toString();
+                     String note= etNote.getEditText().getText().toString();
+
+                    if (textCategorie.equals("") ){
+                        Toast.makeText(accueil.this, "Tous les champs sont obligatoires!!!"+textCategorie+" et "+prix, Toast.LENGTH_SHORT).show();
+                    }else{
+                            Boolean insert = accesLocal.AddCategorie(textCategorie, prix, textDevise, note, dateSystem, String.valueOf(user.userName()));
+                            if (insert == true){
+                                Toast.makeText(accueil.this, "enregistrement Categorie avec succes!!!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(accueil.this, "enregistrement echouee!!!", Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                }
+            });
+            depCategorie.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            depCategorie.setView(view);
+            AlertDialog dialog= depCategorie.create();
+            dialog.show();
+
+
+
+            return true;
         }
 
         if (id == R.id.apropos) {

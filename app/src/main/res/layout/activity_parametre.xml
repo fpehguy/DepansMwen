@@ -3,178 +3,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".Parametre"
-    android:background="@color/gray"
-    >
+    tools:context=".Parametre">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:background="#00DAC3C3"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView90"
-            android:textColor="@color/Rougeandri"
-            android:layout_width="wrap_content"
+            android:id="@+id/a_categorie"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:drawableLeft="@drawable/add"
+            android:freezesText="false"
+            android:padding="5dp"
             android:text="Parametres Generaux"
-            android:textSize="25sp" />
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/blue" />
+
+        <ListView
+            android:id="@+id/param"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp" />
+
+        <ListView
+            android:id="@+id/list_param1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:divider="@color/colorPrimaryDark"
+            android:paddingLeft="20dp">
+
+        </ListView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:background="#00DAC3C3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:drawableLeft="@drawable/add"
+            android:padding="5dp"
+            android:text="Gestion de Categorie"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_weight="2"
-            android:background="?android:attr/listDivider" />
+            android:background="@color/blue" />
+
+        <ListView
+            android:id="@+id/list_cat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:divider="@color/colorPrimaryDark"
+            android:entries="@array/gestioncat"
+            android:paddingLeft="20dp" />
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        >
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:background="#00DAC3C3"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView990"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:text="Monnaie"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"/>
+            android:background="@color/colorPrimaryDark"
+            android:drawableLeft="@drawable/add"
+            android:padding="5dp"
+            android:text="Gestion de Compte"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinner3"
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/blue" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:divider="@color/colorPrimaryDark"
+            android:entries="@array/gestioncat"
+            android:paddingLeft="20dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:background="#00DAC3C3"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/devise"
-            android:textColor="@color/colorPrimaryDark"
-            />
+            android:background="@color/colorPrimaryDark"
+            android:drawableLeft="@drawable/add"
+            android:padding="5dp"
+            android:text="Gestion de Sauvegarde"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/divider4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_weight="2"
-            android:background="?android:attr/listDivider" />
-    </LinearLayout>
+            android:background="@color/blue" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        >
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Categorie"
-            android:textSize="25sp"
-            android:textColor="@color/Rougeandri"
-            android:layout_marginLeft="10dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        >
-        <View
-            android:id="@+id/divider7"
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="2"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/a_categorie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:text="Ajouter une Categorie"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimaryDark"
-
-            />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_marginTop="10dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/m_categorie"
-            android:layout_marginTop="10dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-
-            android:textSize="20sp"
-            android:text="Modifier une Categorie" />
-
-        <View
-            android:id="@+id/divider1"
-            android:layout_marginTop="10dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/s_categorie"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:text="Supprimer une Categorie" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/a_compte"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:text="Ajouter un un compte" />
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:cacheColorHint="@color/colorPrimaryDark"
+            android:divider="@color/colorPrimaryDark"
+            android:entries="@array/gestionsauve"
+            android:paddingLeft="20dp" />
 
 
     </LinearLayout>

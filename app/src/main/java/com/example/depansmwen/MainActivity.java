@@ -14,6 +14,12 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout txtInputPassword;
     Button btn_connect;
     private static AccesLocal accesLocal;
+    static String username;
+
+
+    public static AccesLocal getAccesLocal() {
+        return accesLocal;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         txtInputUsername = (TextInputLayout) findViewById(R.id.txtInputUsername);
         txtInputPassword = (TextInputLayout) findViewById(R.id.txtInputPassword);
+
         btn_connect=findViewById(R.id.btn_connect);
         accesLocal = new AccesLocal(MainActivity.this);
 
@@ -34,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
         btn_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = txtInputUsername.getEditText().getText().toString();
+                 username = txtInputUsername.getEditText().getText().toString();
                 String password = txtInputPassword.getEditText().getText().toString();
                 if (username.equals("") || password.equals("")){
                     Toast.makeText(MainActivity.this, "Tous les champs sont obligatoires!!!", Toast.LENGTH_SHORT).show();
                 }else {
                        Boolean login = accesLocal.login(username, password);
                        if (login == true){
+                           userName();
                            startActivity(new Intent(MainActivity.this,accueil.class));
                            finish();
                        }else {
@@ -59,5 +67,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public String getTxtInputUsername() {
+        return username;
+    }
 
+    public static String userName() {
+        return username;
+    }
 }

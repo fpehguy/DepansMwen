@@ -73,11 +73,10 @@
         android:hint="Username"
         android:ems="10"
         android:inputType="text"
-        android:textSize="20sp"
-        app:passwordToggleEnabled="true">
+        android:textSize="20sp">
 
         <EditText
-            android:inputType="textPassword"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -112,15 +111,16 @@
         tools:ignore="MissingConstraints"
         android:focusable="true"
         android:layout_marginTop="5dp"
-
         android:focusableInTouchMode="true"
         android:hint="Confirmer mot de passe"
         android:ems="10"
         android:inputType="text"
         android:textSize="20sp"
+        app:passwordToggleEnabled="true"
         >
 
         <EditText
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              />
