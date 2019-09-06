@@ -34,7 +34,6 @@ public class accueil extends AppCompatActivity {
     private TextInputLayout etPrix;
     Spinner spinnerDevise;
     private TextInputLayout etNote;
-    long dateSystem;
     private static AccesLocal accesLocal;
     static MainActivity user;
     SimpleDateFormat sdf;
@@ -53,9 +52,8 @@ public class accueil extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        dateSystem = System.currentTimeMillis();
-         sdf = new SimpleDateFormat("yyyy.MM.dd");
-         currentDateandTime = sdf.format(new Date());
+        sdf = new SimpleDateFormat("yyyy.MM.dd");
+        currentDateandTime = sdf.format(new Date());
         accesLocal = new AccesLocal(accueil.this);
     }
 
