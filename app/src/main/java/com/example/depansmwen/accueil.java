@@ -13,6 +13,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.Menu;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -39,12 +42,18 @@ public class accueil extends AppCompatActivity {
     SimpleDateFormat sdf;
     String currentDateandTime;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil1);
         getSupportActionBar().setTitle("Vue d'ensemble ...");
         Toast.makeText(this," "+String.valueOf(user.userName()),Toast.LENGTH_LONG).show();
+        accesLocal = new AccesLocal(accueil.this);
+
+
+
         //getSupportActionBar().hide();
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -54,9 +63,11 @@ public class accueil extends AppCompatActivity {
 
         sdf = new SimpleDateFormat("yyyy.MM.dd");
         currentDateandTime = sdf.format(new Date());
-        accesLocal = new AccesLocal(accueil.this);
     }
 
+    public String getCurrentDateandTime() {
+        return currentDateandTime;
+    }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(accueil mainActivity, FragmentManager fm) {

@@ -7,14 +7,23 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.depansmwen.Database.MySqlLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class AccesLocal {
     private String nomBase = "bdDepansMwen.sqlite";
     private Integer versionBase = 3;
     private MySqlLiteOpenHelper accesBd;
     private SQLiteDatabase bd;
+    String currentDateandTime;
+    SimpleDateFormat sdf;
+    static MainActivity user;
 
     public AccesLocal(Context context) {
         accesBd = new MySqlLiteOpenHelper(context, nomBase, null, versionBase);
+        sdf = new SimpleDateFormat("yyyy.MM.dd");
+        currentDateandTime = sdf.format(new Date());
     }
 
 //    public void Signup(){
@@ -67,5 +76,23 @@ public class AccesLocal {
         long ins = bd.insert("TableCategorie1", null, contentValues);
         if(ins ==- 1) return false;
         else return true;
+    }
+
+    public ArrayList<InformationToday> ListInformationFromBd(){
+        bd = accesBd.getReadableDatabase();
+        String sql = "select * from TableCategorie1 where date = '"+currentDateandTime+"' and user = '"+String.valueOf(user.userName())+"' ";
+        ArrayList<InformationToday> list = new ArrayList<>();
+        Cursor cursor = bd.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+            do {
+                String categorieBase = cursor.getString(0);
+                String montantBase = cursor.getString(1);
+                String deviseBase = cursor.getString(2);
+                String noteBase = cursor.getString(3);
+                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
     }
 }

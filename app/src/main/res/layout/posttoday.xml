@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +17,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/idmont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
@@ -28,25 +32,27 @@
                 android:id="@+id/tvMontant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="45dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 tools:text="100 USD" />
         </LinearLayout>
 
-            <!--<ImageView-->
-                <!--android:id="@+id/ivImage"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="300dp"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />-->
+        <!--<ImageView-->
+        <!--android:id="@+id/ivImage"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />-->
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/idCat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -57,7 +63,7 @@
                 android:id="@+id/tvCategorie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="35dp"
                 android:layout_marginBottom="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 tools:text="Sogebank" />
@@ -65,14 +71,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/idDevise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:layout_marginRight="75dp"
+                android:layout_marginBottom="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 tools:text="DEVISE: " />
 
@@ -87,15 +95,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/idNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 tools:text="NOTE: " />
+
             <TextView
                 android:id="@+id/tvNote"
                 android:layout_width="wrap_content"
