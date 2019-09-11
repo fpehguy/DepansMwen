@@ -20,6 +20,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -29,6 +30,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class accueil extends AppCompatActivity {
@@ -41,18 +43,18 @@ public class accueil extends AppCompatActivity {
     static MainActivity user;
     SimpleDateFormat sdf;
     String currentDateandTime;
-
-
+    View view;
+    Tab_aujourdhui tab_cat;
+    Tab_semaine tab_sem;
+    Tab_mois tab_m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil1);
         getSupportActionBar().setTitle("Vue d'ensemble ...");
-        Toast.makeText(this," "+String.valueOf(user.userName()),Toast.LENGTH_LONG).show();
+        //Toast.makeText(this," "+String.valueOf(user.userName()),Toast.LENGTH_LONG).show();
         accesLocal = new AccesLocal(accueil.this);
-
-
 
         //getSupportActionBar().hide();
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
@@ -78,13 +80,13 @@ public class accueil extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    Tab_aujourdhui tab_cat = new Tab_aujourdhui();
+                     tab_cat = new Tab_aujourdhui();
                     return tab_cat;
                 case 1:
-                    Tab_semaine tab_sem = new Tab_semaine();
+                     tab_sem = new Tab_semaine();
                     return tab_sem;
                 case 2:
-                    Tab_mois tab_m = new Tab_mois();
+                     tab_m = new Tab_mois();
                     return tab_m;
 
                 default:
@@ -113,11 +115,30 @@ public class accueil extends AppCompatActivity {
             return null;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    private void loadSpinnerData() {
+        List<String> labels = accesLocal.getAllSpinners();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
+        //ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, labels);
+
+        view=getLayoutInflater().inflate(R.layout.depense,null);
+
+        spinnerCategorie = (Spinner) view.findViewById(R.id.spinnerCategorie);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerCategorie.setAdapter(dataAdapter);
     }
 
     @Override
@@ -128,9 +149,11 @@ public class accueil extends AppCompatActivity {
             Toast.makeText(this,"Ajouter Depense",Toast.LENGTH_SHORT).show();
             final AlertDialog.Builder depCategorie = new AlertDialog.Builder(accueil.this);
             depCategorie.setTitle("Ajouter une Depense");
-            View view=getLayoutInflater().inflate(R.layout.depense,null);
 
-            spinnerCategorie = (Spinner) view.findViewById(R.id.spinnerCategorie);
+            loadSpinnerData();
+//            View view=getLayoutInflater().inflate(R.layout.depense,null);
+//
+//            spinnerCategorie = (Spinner) view.findViewById(R.id.spinnerCategorie);
             etPrix = (TextInputLayout) view.findViewById(R.id.etPrix);
             spinnerDevise = (Spinner) view.findViewById(R.id.spinnerDevise);
             etNote = (TextInputLayout) view.findViewById(R.id.etNote);
@@ -148,7 +171,10 @@ public class accueil extends AppCompatActivity {
                     }else{
                             Boolean insert = accesLocal.AddCategorie(textCategorie, prix, textDevise, note, currentDateandTime, String.valueOf(user.userName()));
                             if (insert == true){
-                                Toast.makeText(accueil.this, "enregistrement Categorie avec succes!!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(accueil.this, "enregistrement Depense avec succes!!!", Toast.LENGTH_SHORT).show();
+                                tab_cat.refreshTabAujourdhui();
+                                tab_sem.refreshTabSemaine();
+                                //tab_m.refreshTabMois();
                             }else{
                                 Toast.makeText(accueil.this, "enregistrement echouee!!!", Toast.LENGTH_SHORT).show();
                             }

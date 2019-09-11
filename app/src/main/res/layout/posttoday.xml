@@ -22,20 +22,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/idmont"
+                android:id="@+id/idCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-                tools:text="MONTANT: " />
+                tools:text="CATEGORIE: " />
 
             <TextView
-                android:id="@+id/tvMontant"
-                android:layout_width="match_parent"
+                android:id="@+id/tvCategorie"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="45dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-                tools:text="100 USD" />
+                tools:text="Sogebank" />
         </LinearLayout>
 
         <!--<ImageView-->
@@ -52,21 +53,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/idCat"
+                android:id="@+id/idmont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                tools:text="MONTANT: " />
+
+            <TextView
+                android:id="@+id/tvMontant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="45dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-                tools:text="CATEGORIE: " />
-
-            <TextView
-                android:id="@+id/tvCategorie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="5dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-                tools:text="Sogebank" />
+                tools:text="100 USD" />
         </LinearLayout>
 
         <LinearLayout

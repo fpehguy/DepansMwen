@@ -20,9 +20,7 @@ import java.util.List;
 public class Tab_aujourdhui extends Fragment {
       private View.OnClickListener listener;
     View v;
-    ArrayAdapter<String> adt;
     AccesLocal accesLocal;
-    Context context;
 
     private ArrayList<InformationToday> allInformationsToday = new ArrayList<>();
     private InformationTodayAdapter monAdapter;
@@ -45,26 +43,23 @@ public class Tab_aujourdhui extends Fragment {
             recyclerView.setAdapter(monAdapter);
         }else{
             recyclerView.setVisibility(View.GONE);
-            Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees pour aujourd'hui!", Toast.LENGTH_LONG).show();
         }
 
          //Load();
         return v;
     }
 
-    public void Load()
-    {
-
-
-        final ListView listview1=v.findViewById(R.id.IdRecycleView);
-        List<String> list = new ArrayList<>();
-        for(int i=0;i<20;i++)
-        {
-            list.add(String.valueOf("Depense "+i+" En date de 08/08/2019"));
+    public  void refreshTabAujourdhui(){
+        allInformationsToday = accesLocal.ListInformationFromBd();
+        if (allInformationsToday.size() > 0){
+            recyclerView.setVisibility(View.VISIBLE);
+            monAdapter = new InformationTodayAdapter(this.getContext(), allInformationsToday);
+            recyclerView.setAdapter(monAdapter);
+        }else{
+            recyclerView.setVisibility(View.GONE);
+            Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees pour aujourd'hui!", Toast.LENGTH_LONG).show();
         }
-        adt =new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,list);
-        listview1.setAdapter(adt);
-
     }
 
 }

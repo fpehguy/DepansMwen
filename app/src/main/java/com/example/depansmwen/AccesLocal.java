@@ -10,10 +10,11 @@ import com.example.depansmwen.Database.MySqlLiteOpenHelper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AccesLocal {
     private String nomBase = "bdDepansMwen.sqlite";
-    private Integer versionBase = 3;
+    private Integer versionBase = 4;
     private MySqlLiteOpenHelper accesBd;
     private SQLiteDatabase bd;
     String currentDateandTime;
@@ -26,15 +27,6 @@ public class AccesLocal {
         currentDateandTime = sdf.format(new Date());
     }
 
-//    public void Signup(){
-//         bd = accesBd.getWritableDatabase();
-////         String req = " insert into TableUtilisateur(nom, prenom, username, password) " +
-////                 "values("+inscription.getTxtInputNom()+
-////                 ", "+inscription.getTxtInputPrenom()+
-////                 ", "+inscription.getTxtInputUsername()+
-////                 ", "+inscription.getTxtInputPassword()+") ";
-////         bd.execSQL(req);
-//    }
 
     public boolean signup(String nom, String prenom, String username, String password){
         bd = accesBd.getWritableDatabase();
@@ -44,21 +36,21 @@ public class AccesLocal {
         contentValues.put("username", username);
         contentValues.put("password", password);
 
-        long ins = bd.insert("TableUtilisateur2", null, contentValues);
+        long ins = bd.insert("TableUtilisateur4", null, contentValues);
         if(ins ==- 1) return false;
         else return true;
     }
 
     public  boolean checkUsername(String username){
         bd = accesBd.getWritableDatabase();
-        Cursor cursor = bd.rawQuery("Select * from TableUtilisateur2 where username=?", new String[]{username});
+        Cursor cursor = bd.rawQuery("Select * from TableUtilisateur4 where username=?", new String[]{username});
         if (cursor.getCount() > 0) return false;
         else return true;
     }
 
     public  boolean login(String username, String password){
         bd = accesBd.getWritableDatabase();
-        Cursor cursor = bd.rawQuery("Select * from TableUtilisateur2 where username=? and password=?", new String[]{username, password});
+        Cursor cursor = bd.rawQuery("Select * from TableUtilisateur4 where username=? and password=?", new String[]{username, password});
         if (cursor.getCount() > 0) return true;
         else return false;
     }
@@ -73,26 +65,84 @@ public class AccesLocal {
         contentValues.put("date", date);
         contentValues.put("user", user);
 
-        long ins = bd.insert("TableCategorie1", null, contentValues);
+        long ins = bd.insert("TableCategorie4", null, contentValues);
         if(ins ==- 1) return false;
+        else return true;
+    }
+
+    public boolean EnregistreCategorie(String categorie,  String user){
+        bd = accesBd.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("categorie", categorie);
+        contentValues.put("user", user);
+
+        long ins = bd.insert("TableEnregistreCategorie4", null, contentValues);
+        if(ins ==- 1) return false;
+        else return true;
+    }
+
+    public boolean deleteEnregistreCategorie(String categorie,  String user){
+        bd = accesBd.getWritableDatabase();
+        Cursor cursor = bd.rawQuery("Delete from TableEnregistreCategorie4 where categorie=? and user=?", new String[]{categorie, user});
+        if (cursor.getCount() < 0) return false;
         else return true;
     }
 
     public ArrayList<InformationToday> ListInformationFromBd(){
         bd = accesBd.getReadableDatabase();
-        String sql = "select * from TableCategorie1 where date = '"+currentDateandTime+"' and user = '"+String.valueOf(user.userName())+"' ";
+        String sql = "select * from TableCategorie4 where date = '"+currentDateandTime+"' and user = '"+String.valueOf(user.userName())+"' ";
         ArrayList<InformationToday> list = new ArrayList<>();
         Cursor cursor = bd.rawQuery(sql, null);
-        if(cursor.moveToFirst()){
+        if(cursor.moveToLast()){
             do {
                 String categorieBase = cursor.getString(0);
                 String montantBase = cursor.getString(1);
                 String deviseBase = cursor.getString(2);
                 String noteBase = cursor.getString(3);
                 list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase));
-            }while (cursor.moveToNext());
+            }while (cursor.moveToPrevious());
         }
         cursor.close();
+        return list;
+    }
+
+    public ArrayList<InformationToday> ListInformationSemaineFromBd(){
+        bd = accesBd.getReadableDatabase();
+        String sql = "select * from TableCategorie4 where user = '"+String.valueOf(user.userName())+"' ";
+        ArrayList<InformationToday> list = new ArrayList<>();
+        Cursor cursor = bd.rawQuery(sql, null);
+        if(cursor.moveToLast()){
+            do {
+                String categorieBase = cursor.getString(0);
+                String montantBase = cursor.getString(1);
+                String deviseBase = cursor.getString(2);
+                String noteBase = cursor.getString(3);
+                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase));
+            }while (cursor.moveToPrevious());
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getAllSpinners(){
+        List<String> list = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM TableEnregistreCategorie4";
+
+        bd = accesBd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(0));//adding first column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        bd.close();
+        // returning lables
         return list;
     }
 }

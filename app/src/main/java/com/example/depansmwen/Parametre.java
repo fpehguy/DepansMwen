@@ -13,13 +13,22 @@ import java.util.List;
 
 
 public class Parametre extends AppCompatActivity {
+    AccesLocal accesLocal;
+    static MainActivity user;
+     ListView list_cat = null;
+     ListView list_param = null;
+     ListView param = null;
+     View viewModifierCat;
+     View viewDeleteCat;
+     Spinner spinnerModifierCat;
+     Spinner spinnerDeleteCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametre);
         getSupportActionBar().setTitle("Parametre");
-
+        accesLocal = new AccesLocal(Parametre.this);
 
         List<String> list = new ArrayList<>();
         List<String> list1 = new ArrayList<>();
@@ -27,17 +36,15 @@ public class Parametre extends AppCompatActivity {
         list1.add("Devise");
 
 
-        final ListView list_cat= findViewById(R.id.list_cat);
-        final ListView list_param= findViewById(R.id.list_param1);
-        final ListView param= findViewById(R.id.param);
+         list_cat= findViewById(R.id.list_cat);
+         list_param= findViewById(R.id.list_param1);
+         param= findViewById(R.id.param);
 
        // ArrayAdapter na = new ArrayAdapter(Parametre.this, R.layout.param_gene, list);
-        ArrayAdapter na = new ArrayAdapter(Parametre.this,android.R.layout.simple_list_item_checked,list);
-        ArrayAdapter na1 = new ArrayAdapter(Parametre.this,android.R.layout.simple_list_item_1,list1);
-        list_param.setAdapter(na1);
-        param.setAdapter(na);
-
-
+//        ArrayAdapter na = new ArrayAdapter(Parametre.this,android.R.layout.simple_list_item_checked,list);
+//        ArrayAdapter na1 = new ArrayAdapter(Parametre.this,android.R.layout.simple_list_item_1,list1);
+//        list_param.setAdapter(na1);
+//        param.setAdapter(na);
 
         list_cat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -59,26 +66,58 @@ public class Parametre extends AppCompatActivity {
                 }
             }
         });
+        loadSpinnerData();
+        //loadSpinnerDataForDelete();
+    }
 
+    private void loadSpinnerData() {
+        List<String> labels = accesLocal.getAllSpinners();
 
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
+        //ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, labels);
 
+        viewModifierCat=getLayoutInflater().inflate(R.layout.activity_spinner_cat,null);
 
+        spinnerModifierCat=viewModifierCat.findViewById(R.id.spinner);
 
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        // attaching data adapter to spinner
+        spinnerModifierCat.setAdapter(dataAdapter);
+    }
 
+    private void loadSpinnerDataForDelete() {
+        List<String> labels = accesLocal.getAllSpinners();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
+        //ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, labels);
+
+        viewDeleteCat=getLayoutInflater().inflate(R.layout.activity_spinner_cat_supress,null);
+
+        spinnerDeleteCat=viewDeleteCat.findViewById(R.id.spinner);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerDeleteCat.setAdapter(dataAdapter);
     }
 
     private void Supprimer_categorie() {
 
         final AlertDialog.Builder msupressCategorie = new AlertDialog.Builder(Parametre.this);
         msupressCategorie.setTitle("Supprimer une  Categorie");
-        View view=getLayoutInflater().inflate(R.layout.activity_spinner_cat_supress,null);
-
-        final  Spinner spinner=view.findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(Parametre.this,android.R.layout.simple_spinner_item,
-                getResources().getStringArray(R.array.compte));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        loadSpinnerDataForDelete();
+//        View view=getLayoutInflater().inflate(R.layout.activity_spinner_cat_supress,null);
+//
+//        final  Spinner spinner=view.findViewById(R.id.spinner);
+//        ArrayAdapter<String> adapter=new ArrayAdapter<String>(Parametre.this,android.R.layout.simple_spinner_item,
+//                getResources().getStringArray(R.array.compte));
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
 
         msupressCategorie.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             @Override
@@ -87,27 +126,34 @@ public class Parametre extends AppCompatActivity {
             }
         });
 
-        msupressCategorie.setView(view);
+        msupressCategorie.setView(viewDeleteCat);
         final AlertDialog dialog=msupressCategorie.create();
         dialog.show();
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        spinnerDeleteCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(!(spinner.getSelectedItem().toString().equalsIgnoreCase("Select une Categorie"))) {
+                if(!(spinnerDeleteCat.getSelectedItem().toString().equalsIgnoreCase("Select une Categorie"))) {
 
                     final AlertDialog.Builder msupression = new AlertDialog.Builder(Parametre.this);
-                    msupression.setTitle("Voulez-vous supprimer la categorie "+spinner.getSelectedItem().toString()+" ?");
+                    msupression.setTitle("Voulez-vous supprimer la categorie "+spinnerDeleteCat.getSelectedItem().toString()+" ?");
 
                     msupression.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog1, int which) {
-                            Toast.makeText(Parametre.this,"La categorie "+spinner.getSelectedItem().toString()
-                                            +" a ete bien supprime !",
-                                    Toast.LENGTH_SHORT)
-                                    .show();
+                            Boolean delete = accesLocal.deleteEnregistreCategorie(spinnerDeleteCat.getSelectedItem().toString(), String.valueOf(user.userName()));
+                            if (delete == true){
+                                Toast.makeText(Parametre.this, "Suppression Categorie avec succes!!!", Toast.LENGTH_SHORT).show();
+                                loadSpinnerDataForDelete();
+                            }else{
+                                Toast.makeText(Parametre.this, "echouee!!!", Toast.LENGTH_SHORT).show();
+                            }
+//                            Toast.makeText(Parametre.this,"La categorie "+spinner.getSelectedItem().toString()
+//                                            +" a ete bien supprime !",
+//                                    Toast.LENGTH_SHORT)
+//                                    .show();
 
                             dialog.cancel();
                         }
@@ -136,15 +182,16 @@ public class Parametre extends AppCompatActivity {
 
         final AlertDialog.Builder modifCategorie = new AlertDialog.Builder(Parametre.this);
         modifCategorie.setTitle("Modifier une  Categorie");
-        View view=getLayoutInflater().inflate(R.layout.activity_spinner_cat,null);
+        loadSpinnerData();
+//        View viewModifierCat=getLayoutInflater().inflate(R.layout.activity_spinner_cat,null);
+//
+//        final  Spinner spinnerModifierCat=viewModifierCat.findViewById(R.id.spinner);
+//        ArrayAdapter<String> adapter=new ArrayAdapter<String>(Parametre.this,android.R.layout.simple_spinner_item,
+//                getResources().getStringArray(R.array.compte));
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerModifierCat.setAdapter(adapter);
 
-        final  Spinner spinner=view.findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(Parametre.this,android.R.layout.simple_spinner_item,
-                getResources().getStringArray(R.array.compte));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        final EditText edit=view.findViewById(R.id.edit);
+        final EditText edit=viewModifierCat.findViewById(R.id.edit);
 
         modifCategorie.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -160,13 +207,13 @@ public class Parametre extends AppCompatActivity {
         });
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        spinnerModifierCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(!(spinner.getSelectedItem().toString().equalsIgnoreCase("Select une Categorie"))) {
-                    edit.setText(spinner.getSelectedItem().toString());
+                if(!(spinnerModifierCat.getSelectedItem().toString().equalsIgnoreCase("Select une Categorie"))) {
+                    edit.setText(spinnerModifierCat.getSelectedItem().toString());
                 }
                 else {
                     Toast.makeText(Parametre.this, "Selectionnez une categorie !", Toast.LENGTH_SHORT).show();
@@ -180,7 +227,7 @@ public class Parametre extends AppCompatActivity {
 
             }
         });
-        modifCategorie.setView(view);
+        modifCategorie.setView(viewModifierCat);
         AlertDialog dialog= modifCategorie.create();
         dialog.show();
     }
@@ -197,7 +244,18 @@ public class Parametre extends AppCompatActivity {
         ajoutCategorie.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                String textCategorie = String.valueOf(input.getText());
+                if (textCategorie.equals("") ){
+                    Toast.makeText(Parametre.this, "Le champs est obligatoire!!!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Boolean insert = accesLocal.EnregistreCategorie(textCategorie, String.valueOf(user.userName()));
+                    if (insert == true){
+                        Toast.makeText(Parametre.this, "enregistrement Categorie avec succes!!!", Toast.LENGTH_SHORT).show();
+                        loadSpinnerData();
+                    }else{
+                        Toast.makeText(Parametre.this, "enregistrement echouee!!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         ajoutCategorie.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

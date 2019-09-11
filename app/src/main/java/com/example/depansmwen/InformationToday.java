@@ -6,7 +6,7 @@ public class InformationToday {
     String devise;
     String note;
 
-    public InformationToday(String montant, String categorie, String devise, String note) {
+    public InformationToday(String categorie, String montant, String devise, String note) {
         this.montant = montant;
         this.categorie = categorie;
         this.devise = devise;
