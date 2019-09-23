@@ -1,57 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blue"
-            />
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-
-</android.support.design.widget.CoordinatorLayout>
-
-
-<!--
-
-
-<TextView
-android:id="@+id/title"
-android:textColor="@color/colorPrimaryDark"
-android:layout_marginLeft="15dp"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:gravity="center"
-android:minHeight="?actionBarSize"
-android:text="Vue d'ensemble"
-android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
-
-
-    <android.support.design.widget.NavigationView
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start | bottom"
-        android:background="@color/colorPrimaryDark"
-        app:menu="@menu/menu">
+        android:fitsSystemWindows="true">
 
- -->
+        <!-- This LinearLayout represents the contents of the screen  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/flContent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AppTheme.AppBarOverlay">
+
+                    <include
+                        layout="@layout/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:tabIndicator="@color/white"
+                        app:tabIndicatorHeight="5dp"
+                        app:tabSelectedTextColor="@color/white"
+
+                        app:tabTextAppearance="@style/TabLayoutTextStyle"
+                        app:tabTextColor="@color/gray" />
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            </LinearLayout>
+
+            <!--android:id="@+id/floatingActionButtonAjouterDepense"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginRight="0dp"-->
+            <!--android:layout_marginBottom="40dp"-->
+            <!--android:src="@drawable/add1"-->
+            <!--app:backgroundTint="@color/colorPrimary"-->
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/floatingMenuBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom |right"
+                android:layout_margin="16dp"
+                android:layout_marginRight="20dp"
+                app:menu_backgroundColor="@android:color/transparent"
+                app:menu_fab_label=""
+                app:menu_openDirection="up"
+                app:menu_icon="@drawable/add1"
+                app:menu_showShadow="true">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/act1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/depense"
+                    app:fab_colorNormal="@color/colorAccent"
+                    app:fab_label="@string/ajouter_depense"
+                    app:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/act2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add1"
+                    app:fab_colorNormal="@color/colorAccent"
+                    app:fab_label="@string/ajouterunecat"
+                    app:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/act3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/account"
+                    app:fab_colorNormal="@color/colorAccent"
+                    app:fab_label="@string/creer_un_compte"
+                    app:fab_size="mini" />
+
+            </com.github.clans.fab.FloatingActionMenu>
+        </android.support.design.widget.CoordinatorLayout>
+
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nvView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@android:color/white"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/menu"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:headerLayout="@layout/nav_header">
+
+
+        </android.support.design.widget.NavigationView>
+
+        <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/act4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="100dp"-->
+            <!--android:src="@drawable/info"-->
+            <!--app:fabSize="mini"-->
+            <!--app:fab_colorNormal="@color/colorAccent" />-->
+    </android.support.v4.widget.DrawerLayout>
+
+
+
+</RelativeLayout>

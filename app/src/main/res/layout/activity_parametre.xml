@@ -2,57 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".Parametre">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_weight="1"
-        android:background="#00DAC3C3"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/a_categorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:drawableLeft="@drawable/add"
-            android:freezesText="false"
-            android:padding="5dp"
-            android:text="Parametres Generaux"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/blue" />
-
-        <ListView
-            android:id="@+id/param"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp" />
-
-        <ListView
-            android:id="@+id/list_param1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:divider="@color/colorPrimaryDark"
-            android:paddingLeft="20dp">
-
-        </ListView>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +28,7 @@
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/divider2"
+            android:id="@+id/div"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/blue" />
@@ -83,7 +36,7 @@
         <ListView
             android:id="@+id/list_cat"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:divider="@color/colorPrimaryDark"
             android:entries="@array/gestioncat"
@@ -119,11 +72,12 @@
             android:background="@color/blue" />
 
         <ListView
+            android:id="@+id/list_compte"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:divider="@color/colorPrimaryDark"
-            android:entries="@array/gestioncat"
+            android:entries="@array/gestioncompte"
             android:paddingLeft="20dp" />
 
 
@@ -143,7 +97,7 @@
             android:background="@color/colorPrimaryDark"
             android:drawableLeft="@drawable/add"
             android:padding="5dp"
-            android:text="Gestion de Sauvegarde"
+            android:text="Autres"
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="18sp"
@@ -156,12 +110,13 @@
             android:background="@color/blue" />
 
         <ListView
+            android:id="@+id/list_autres"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:cacheColorHint="@color/colorPrimaryDark"
             android:divider="@color/colorPrimaryDark"
-            android:entries="@array/gestionsauve"
+            android:entries="@array/autres"
             android:paddingLeft="20dp" />
 
 

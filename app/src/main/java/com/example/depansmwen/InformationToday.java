@@ -5,12 +5,14 @@ public class InformationToday {
     String categorie;
     String devise;
     String note;
+    Integer id;
 
-    public InformationToday(String categorie, String montant, String devise, String note) {
+    public InformationToday(String categorie, String montant, String devise, String note, Integer id) {
         this.montant = montant;
         this.categorie = categorie;
         this.devise = devise;
         this.note = note;
+        this.id=id;
     }
 
     public String getMontant() {
@@ -43,5 +45,13 @@ public class InformationToday {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

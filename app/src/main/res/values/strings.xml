@@ -1,7 +1,88 @@
+<?xml version="1.0"?>
 <resources>
-    <string name="app_name">Mes Depenses</string>
+    <string name="app_name">Lajan Pa\'m</string>
+    <string name="titre_categorie">CATEGORIE</string>
+    <string name="titre_compte">COMPTE</string>
+    <string name="titre_PRIX">PRIX</string>
+    <string name="titre_note">NOTE</string>
+    <string name="titre_bank">BANK</string>
+    <string name="titre_noducompte">NO DU COMPTE</string>
+    <string name="titre_typedecompte">TYPE DU COMPTE</string>
+    <string name="titre_selectcompte">SELECTIONNEZ UN COMPTE</string>
+    <string name="titre_selectcategorie">SELECTIONNEZ UNE CATEGORIE</string>
+    <string name="titre_choix_langue">Selectionner une langue</string>
+    <string name="semaine">SEMAINE</string>
+    <string name="jour">JOUR</string>
+    <string name="mois">MOIS</string>
+    
+    
+    <string name="nom_utilisateur">Utilisateur</string>
+    <string name="pass_utilisateur">Mot de passe</string>
+    <string name="bt_login">Connecter</string>
+    <string name="pas_decompte">Vous n\'avez pas un compte ?</string>
+    <string name="creer_un_compte">Creer un compte ?</string>
+    <string name="rapport_et_stat">Rapport et statistique ?</string>
+    <string name="droitreserve">©Tous droits reserves!</string>
+    <string name="determination">Determination++ | 2019</string>
+    <string name="langue">Langues</string>
 
-    <string-array name="list">
+
+    <string name="nomuti">Nom</string>
+    <string name="prenomuti">Prenom</string>
+    <string name="confirmerpass">Confirmer mot de pass</string>
+    <string name="btnsignup">Enregistrer</string>
+
+    <string name="menuajoutDepense">Ajouter Depense</string>
+    <string name="menuRecher">Rechercher ...</string>
+    <string name="menuParam">Parametre ...</string>
+    <string name="menuApropos">A propos</string>
+    <string name="menudeconet">Deconnexion</string>
+    <string name="titreacuueil">Vu d\'ensemble</string>
+
+
+    <string name="adhesionOui">Oui</string>
+    <string name="adhesionNon">Non</string>
+    <string name="adhesionAnnuler">Annuler</string>
+    <string name="nomCategir">Saisir le nom de la Categorie</string>
+    <string name="enregis_succes">Enregistrement avec succes!!!</string>
+    <string name="motdepassdident">Le mot de passe doit etre identique!!!</string>
+    <string name="lepseudo">Le pseudo est deja Utilise!</string>
+    <string name="remplirleschan">Tous les champs sont obligatoires!!!</string>
+    <string name="ajouterunecat">Ajouter une Categorie</string>
+    <string name="champobl">Le champs est obligatoire!!!</string>
+    <string name="catexistedeja">Cette categorie existe deja!</string>
+    <string name="ajouter_compte">Ajouter un Compte</string>
+    <string name="adhesionOk">Ok</string>
+    <string name="compteexist">Ce compte existe deja!</string>
+    <string name="ajouterSolde">Ajouter Solde</string>
+    <string name="visualisercomp">Visualiser et modifier Compte</string>
+    <string name="comptecashmo">Compte CASH / Modifier</string>
+    <string name="modifSucces">modification sucees</string>
+    <string name="supp_une_cat">Supprimer une Categorie</string>
+    <string name="titreSupreCat">Voulez-vous supprimer cette categorie?</string>
+    <string name="suppress_succes">Suppression Categorie avec succes!!!</string>
+    <string name="operEchou">Operation echouee!!!</string>
+    <string name="text_categorie">Nom Category</string>
+    <string name="modifCat">Modifier une  Categorie</string>
+    <string name="text_creer">Creer</string>
+
+    <string name="titre_group_par">Groupe</string>
+    <string name="text_depense">Depense</string>
+    <string name="text_solde">Solde</string>
+    <string name="aucune_depense">Aucune Depense !</string>
+    <string name="veuxtudeconnecter">Voulez vous deconnecter de l\'application?</string>
+    <string name="aucune_depense_enre">Aucune depense n\'est Enregistre aujourd\'hui!</string>
+    <string name="exporterpdf">Exporter Rapport (PDF)</string>
+    <string name="gest_cat">Gestion de Categorie</string>
+    <string name="gest_compte">Gestion de Compte</string>
+    <string name="autres">Autres</string>
+    <string name="text_modifier">Modifier</string>
+    <string name="text_suppimer">Supprimer</string>
+    <string name="message">Aucune Categorie n\'a ete Enregistre!</string>
+    <string name="message1">Message</string>
+
+
+    <string-array name="spincategorie">
         <item>Divers</item>
         <item>Nourriture</item>
         <item>Boissons</item>
@@ -10,37 +91,67 @@
         <item>Loisirs</item>
     </string-array>
 
+    <string-array name="arraylangues">
+        <item>Select une langue</item>
+        <item>Anglais</item>
+        <item>Francais</item>
+    </string-array>
 
-    <string-array name="compte">
-        <item>Select une Categorie</item>
-        <item>Cash</item>
-        <item>Sogebank</item>
-        <item>Unibank</item>
-        <item>Mon Cash</item>
+    <string-array name="grouppar">
+        <item>Aujourdhui</item>
+        <item>semaine</item>
+        <item>mois</item>
     </string-array>
 
 
-    <string-array name="paramgeneraux">
-        <item>Devise</item>
-        <item>Recevoir un rappel</item>
+
+
+
+    <string-array name="gestioncompte">
+
+        <item>Ajouter un compte</item>
+
+        <item>Visualiser/Activer compte</item>
+
     </string-array>
+
+
+
+    <string-array name="typecompte">
+
+        <item>Courant</item>
+
+        <item>Epargne</item>
+
+    </string-array>
+
+
 
     <string-array name="gestioncat">
+
         <item>Ajouter une categorie</item>
+
         <item>Modifier une categorie</item>
+
         <item>Supprimer une categorie</item>
-    </string-array>
 
-    <string-array name="gestionsauve">
-        <item>Exporter en Feuille de Calcul</item>
     </string-array>
 
 
-    <string-array name="devise">
-        <item>HTG</item>
-        <item>USD</item>
-        <item>EURO</item>
-        <item>REAL</item>
+    <string-array name="autres">
+        <item>Rapport et Statistique</item>
+        <item>Exporter le rapport en pdf</item>
     </string-array>
 
+    <string name="droouverture" translatable="false">Ouvrir Navigation</string>
+    <string name="drfermeture" translatable="false">Fermer Navigation</string>
+
+    <string name="apropos">A Propos</string>
+    <string name="devloper">Cette Application a été developpé par 6 Developpeurs de l’université INUKA.</string>
+    <string name="ajouter_depense">Ajouter Depense</string>
+    <string name="saisir_lenom">Saisir le nom</string>
+    <string name="adhesion_creer">Creer</string>
+    <string name="deconnexion">deconnexion</string>
+    <string name="selectCatamodif">Veuillez selectionner une Categorie</string>
+    <string name="champCatnepeutvide">Remplir le champs Categoie |</string>
 </resources>

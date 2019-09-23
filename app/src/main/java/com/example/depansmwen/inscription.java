@@ -15,7 +15,7 @@ public class inscription extends AppCompatActivity {
     private TextInputLayout txtInputUsername;
     private TextInputLayout txtInputPassword;
     private TextInputLayout txtInputConfirm;
-    private Button btn_signup;
+    private Button btn_signup,btn_log;
     private static AccesLocal accesLocal;
 
     @Override
@@ -23,7 +23,7 @@ public class inscription extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inscription);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         txtInputNom = (TextInputLayout) findViewById(R.id.txtInputNom);
         txtInputPrenom = (TextInputLayout) findViewById(R.id.txtInputPrenom);
@@ -31,8 +31,16 @@ public class inscription extends AppCompatActivity {
         txtInputPassword = (TextInputLayout) findViewById(R.id.txtInputPassword);
         txtInputConfirm = (TextInputLayout) findViewById(R.id.txtInputConfirm);
         btn_signup = (Button) findViewById(R.id.btn_signup);
+        //btn_log = (Button) findViewById(R.id.btn_log);
 
         accesLocal = new AccesLocal(inscription.this);
+
+//        btn_log.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(inscription.this, MainActivity.class));
+//            }
+//        });
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,25 +52,28 @@ public class inscription extends AppCompatActivity {
                 String confirm = txtInputConfirm.getEditText().getText().toString();
 
                 if (nom.equals("") || prenom.equals("") || username.equals("") || password.equals("") || confirm.equals("")){
-                    Toast.makeText(inscription.this, "Tous les champs sont obligatoires!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(inscription.this, R.string.remplirleschan, Toast.LENGTH_SHORT).show();
                 }else{
-                      if (password.equals(confirm)){
-                          Boolean checkUsername = accesLocal.checkUsername(username);
-                          if (checkUsername == true){
-                              Boolean insert = accesLocal.signup(nom, prenom, username, password);
-                              if (insert == true){
-                                  Toast.makeText(inscription.this, "enregistrement avec succes!!!  Maintenant Login...", Toast.LENGTH_LONG).show();
-                                  startActivity(new Intent(inscription.this, MainActivity.class));
-                              }
-                          }else {
-                              Toast.makeText(inscription.this, "Le pseudo "+ username + " est deja utilise!!!", Toast.LENGTH_SHORT).show();
-                              txtInputUsername.getEditText().setText("");
-                          }
-                      }else {
-                            Toast.makeText(inscription.this, "Le mot de passe doit etre identique!!!", Toast.LENGTH_SHORT).show();
-                            txtInputPassword.getEditText().setText("");
-                            txtInputConfirm.getEditText().setText("");
-                      }
+                    if (password.equals(confirm)){
+                        Boolean checkUsername = accesLocal.checkUsername(username);
+                        if (checkUsername == true){
+                            Boolean insert = accesLocal.signup(nom, prenom, username, password);
+                            if (insert == true){
+                                Boolean insertcompte = accesLocal.EnregistreCompte(username,"CASH","12345678","","1","0");
+                                if (insertcompte == true) {
+                                    Toast.makeText(inscription.this, R.string.enregis_succes, Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(inscription.this, MainActivity.class));
+                                }
+                            }
+                        }else {
+                            Toast.makeText(inscription.this, R.string.lepseudo, Toast.LENGTH_SHORT).show();
+                            txtInputUsername.getEditText().setText("");
+                        }
+                    }else {
+                        Toast.makeText(inscription.this, R.string.motdepassdident, Toast.LENGTH_SHORT).show();
+                        txtInputPassword.getEditText().setText("");
+                        txtInputConfirm.getEditText().setText("");
+                    }
                 }
             }
         });
