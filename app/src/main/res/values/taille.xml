@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <resources>
+    <dimen name="taille_null">0dp</dimen>
+    <dimen name="taille_1">1dp</dimen>
+    <dimen name="taille_2">2dp</dimen>
+    <dimen name="taille_5">5dp</dimen>
+    <dimen name="taille_10">10dp</dimen>
+    <dimen name="taille_15">15dp</dimen>
+    <dimen name="taille_mtext">12dp</dimen>
+    <dimen name="taille_Mtext">14dp</dimen>
+    <dimen name="taille_Ltext">16dp</dimen>
+    <dimen name="taille_25">25dp</dimen>
+    <dimen name="taille_80">80dp</dimen>
+    <dimen name="taille_250">250dp</dimen>
+</resources>

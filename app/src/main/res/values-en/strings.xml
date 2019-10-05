@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<resources>
+    <string name="app_name">Lajan Pa\'m</string>
+    <string name="titre_categorie">Category</string>
+    <string name="titre_compte">Account</string>
+    <string name="titre_PRIX">Price</string>
+    <string name="titre_note">Note</string>
+    <string name="titre_bank">Bank</string>
+    <string name="titre_noducompte">Account number</string>
+    <string name="titre_typedecompte">Account type</string>
+    <string name="titre_selectcompte">Select an account</string>
+    <string name="titre_selectcategorie">Select a category</string>
+    <string name="titre_choix_langue">Select a language</string>
+    <string name="semaine">WEEK</string>
+    <string name="jour">DAY</string>
+    <string name="mois">MONTH</string>
+
+
+    <string name="nom_utilisateur">Username</string>
+    <string name="pass_utilisateur">Password</string>
+    <string name="bt_login">Connect</string>
+    <string name="pas_decompte">Do you have an account?</string>
+    <string name="creer_un_compte">Create a new Account !</string>
+    <string name="rapport_et_stat">Repport and statistics</string>
+    <string name="droitreserve">©Allright Reserved!</string>
+    <string name="determination">Determination++ | 2019</string>
+    <string name="langue">Languages</string>
+
+    <string name="nomuti">First Name</string>
+    <string name="prenomuti">Last Name</string>
+    <string name="confirmerpass">Confirm password</string>
+    <string name="btnsignup">Sign Up</string>
+
+    <string name="menuajoutDepense">Add Expense </string>
+    <string name="menuRecher">Search</string>
+    <string name="menuParam">Settings</string>
+    <string name="menuApropos">About</string>
+    <string name="menudeconet">Log out</string>
+
+    <string name="titreacuueil">Overview</string>
+
+
+
+
+
+
+    <string name="adhesionOui">Yes</string>
+    <string name="adhesionNon">No</string>
+    <string name="adhesionAnnuler">Cancel</string>
+    <string name="nomCategir">Categorie Name</string>
+    <string name="enregis_succes">Save Success</string>
+    <string name="motdepassdident">The password must be the same!!!</string>
+    <string name="lepseudo">The nickname is already used!</string>
+    <string name="remplirleschan">All fields are mandatory</string>
+    <string name="ajouterunecat">Add a Category</string>
+    <string name="champobl">The field is mandatory !!!</string>
+    <string name="catexistedeja">This category is already exists!</string>
+    <string name="ajouter_compte">Add Account</string>
+    <string name="adhesionOk">Ok</string>
+    <string name="compteexist">This account is already exists!</string>
+    <string name="ajouterSolde">Add Balance</string>
+    <string name="visualisercomp">View and edit Account</string>
+    <string name="comptecashmo">Account CASH/Edit</string>
+    <string name="modifSucces">Edit Success</string>
+    <string name="supp_une_cat">Delete a Category</string>
+    <string name="titreSupreCat">Do you want to delete the category?</string>
+    <string name="suppress_succes">Delete Category successfully!</string>
+    <string name="operEchou">Operation failed !!!</string>
+    <string name="modifCat">Edit a category</string>
+
+    <string name="titre_group_par">Group</string>
+    <string name="text_depense">Expense</string>
+    <string name="text_solde">Balance</string>
+    <string name="aucune_depense">no expense!</string>
+
+    <string name="veuxtudeconnecter">Are you sure you want to logout ?</string>
+    <string name="aucune_depense_enre">No expense saved today!</string>
+
+
+    <string-array name="spincategorie">
+        <item>Divers</item>
+        <item>Nourriture</item>
+        <item>Boissons</item>
+        <item>Transport</item>
+        <item>Sante</item>
+        <item>Loisirs</item>
+    </string-array>
+
+    <string-array name="arraylangues">
+        <item>Select une langue</item>
+        <item>Anglais</item>
+        <item>Francais</item>
+    </string-array>
+
+    <string-array name="grouppar">
+        <item>Aujourdhui</item>
+        <item>semaine</item>
+        <item>mois</item>
+    </string-array>
+
+
+
+
+
+    <string-array name="gestioncompte">
+
+        <item>ADD ACCOUNT</item>
+
+        <item>VIEW/ENABLE ACCOUNT</item>
+
+    </string-array>
+
+
+    <string-array name="typecompte">
+
+        <item>Courant</item>
+
+        <item>Epargne</item>
+
+    </string-array>
+
+
+
+    <string-array name="gestioncat">
+
+        <item>ADD CATEGORY</item>
+
+        <item>MODIFY CATEGORY</item>
+
+        <item>DELETE CATEGORY</item>
+
+    </string-array>
+
+
+    <string-array name="autres">
+        <item>REPORT AND STATISTICS</item>
+        <item>Export the report in pdf</item>
+    </string-array>
+
+
+    <string name="exporterpdf">Export expense(PDF)</string>
+    <string name="gest_cat">Category management</string>
+    <string name="gest_compte">Account management</string>
+    <string name="autres">Others</string>
+
+
+    <string name="apropos">About</string>
+    <string name="devloper">Cette Application a été developpé par 6 Developpeurs de l’université INUKA. en</string>
+    <string name="ajouter_depense">Add expense</string>
+    <string name="saisir_lenom">Type the name of category ... </string>
+    <string name="adhesion_creer">Create</string>
+    <string name="deconnexion">Log out</string>
+    <string name="selectCatamodif">Select a category</string>
+    <string name="champCatnepeutvide">Field category can\'t be ...</string>
+    <string name="adhesionsup">Are you sure to delete expense ?</string>
+    <string name="argentinsufissat">"Vous n'avez suffisament d'argent sur ce compte Veuillez changer de compte ou Ajoutez d'argent En</string>
+    <string name="titre_date">Date</string>
+    <string name="text_modifier">Modify</string>
+    <string name="text_suppimer">Delete</string>
+    <string name="message">Aucune Categorie n\'a ete Enregistre! En</string>
+    <string name="message1">Message</string>
+    <string name="text_creer">Creer En</string>
+    <string name="text_detail">Depense Details En</string>
+    <string name="text_categorie">Category\'s name</string>
+    <string name="pseudoincorret">Pseudo ou mot de passe incorrect!!! En"</string>
+    <string name="text_voirdetail">View detail"</string>
+    <string name="messageoption">Message options</string>
+    <string name="lang_fr">French</string>
+    <string name="lang_en">English</string>
+    <string name="rienEnregistre">Vous ne pouvez pas exporter de Rapport sans rien enregistrer !!  En</string>
+    <string name="soldetotal">Solde Total En</string>
+    <string name="deptotal">Depense Totale En</string>
+    <string name="btnajouter">Ajouter En</string>
+    <string name="deTotal">2.Total En</string>
+    <string name="catcompte">1. Categorie / Compte En</string>
+    <string name="text_parametr">Settings</string>
+
+
+
+</resources>
