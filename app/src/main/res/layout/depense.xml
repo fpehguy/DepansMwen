@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/taille_5"
-        android:text="Compte" />
+        android:text="@string/titre_compte" />
 
     <Spinner
         android:id="@+id/spinnerCompte"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:padding="@dimen/taille_5"
-        android:text="Prix" />
+        android:text="@string/titre_PRIX" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/cd"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/taille_5"
 
-        android:text="Note" />
+        android:text="@string/titre_note" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/etNote"
@@ -116,7 +116,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="Ajouter"
+            android:text="@string/btnajouter"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 

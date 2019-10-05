@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <resources>
     <color name="colorPrimary">#CC5500</color>
-    <color name="colorPrimaryDark">#F6F2F2</color>
+    <color name="colorPrimaryDark">#BAB10A</color>
     <color name="colorAccent">#DF7F10</color>
-    <color name="vert"> #096A09</color>
-    <color name="black">#0C001E</color>
-    <color name="RougeVif">#FF0000</color>
-    <color name="Rougeandri"> #A91101 </color>
-    <color name="blue">#0F056B</color>
-    <color name="gray">#595E79</color>
-
-
-
-
+    <color name="vert">#096A09</color>
+    <color name="white">#FFFFFF</color>
+    <color name="RougeVif">#220A03</color>
+    <color name="Rougeandri">#811E03</color>
+    <color name="blue">#060131</color>
+    <color name="gray">#D6D8DE</color>
+    <color name="rougesans">#F10606</color>
 </resources>

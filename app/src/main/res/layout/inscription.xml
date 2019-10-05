@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/back"
-    android:padding="30dp"
-
-    >
+    android:padding="0dp"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="50dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="35dp"
         app:srcCompat="@drawable/logo"
         tools:ignore="VectorDrawableCompat" />
 
@@ -24,117 +22,119 @@
         android:id="@+id/txtInputNom"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
+        android:layout_marginTop="5dp"
+        android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="NOM"
-        android:ems="10"
+        android:hint="@string/nomuti"
         android:inputType="text"
         android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        >
+        tools:ignore="MissingConstraints">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/txtInputPrenom"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
+        android:layout_marginTop="5dp"
+        android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="5dp"
-        android:hint="Prenom"
-        android:ems="10"
+        android:hint="@string/prenomuti"
         android:inputType="text"
         android:textSize="20sp"
-        >
-
+        tools:ignore="MissingConstraints">
 
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/txtInputUsername"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
+        android:layout_marginTop="5dp"
+        android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="5dp"
-        android:hint="Username"
-        android:ems="10"
+        android:hint="@string/nom_utilisateur"
         android:inputType="text"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints">
 
         <EditText
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/txtInputPassword"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
+        android:layout_marginTop="5dp"
+        android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="Mot de passe"
-        android:ems="10"
-        android:layout_marginTop="5dp"
+        android:hint="@string/pass_utilisateur"
         android:inputType="text"
         android:textSize="20sp"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
 
         <EditText
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:hint=""
-            />
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/txtInputConfirm"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:focusable="true"
         android:layout_marginTop="5dp"
-        android:focusableInTouchMode="true"
-        android:hint="Confirmer mot de passe"
         android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/confirmerpass"
         android:inputType="text"
         android:textSize="20sp"
         app:passwordToggleEnabled="true"
-        >
+        tools:ignore="MissingConstraints">
 
         <EditText
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_round"
-        android:text="Save"
-        android:textSize="16sp"
-        android:layout_marginTop="40dp"
-        android:textColor="#fff"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/taille_15"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnsignup"
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
 
 </LinearLayout>

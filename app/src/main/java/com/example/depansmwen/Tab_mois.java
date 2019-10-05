@@ -29,7 +29,8 @@ public class Tab_mois extends Fragment {
     recyclerView1 = (RecyclerView) rootView.findViewById(R.id.IdRecycleView3);
     linearLayoutManager = new LinearLayoutManager(this.getContext());
     recyclerView1.setLayoutManager(linearLayoutManager);
-    recyclerView1.setHasFixedSize(true);
+//    recyclerView1.setHasFixedSize(true);
+
     allInformationsToday = accesLocal.ListInformationSemaineFromBd();
     if (allInformationsToday.size() > 0){
       recyclerView1.setVisibility(View.VISIBLE);
@@ -37,7 +38,6 @@ public class Tab_mois extends Fragment {
       recyclerView1.setAdapter(monAdapter);
     }else{
       recyclerView1.setVisibility(View.GONE);
-      Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees!", Toast.LENGTH_LONG).show();
     }
     return rootView;
   }
@@ -50,7 +50,6 @@ public class Tab_mois extends Fragment {
       recyclerView1.setAdapter(monAdapter);
     }else{
       recyclerView1.setVisibility(View.GONE);
-      Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees pour aujourd'hui!", Toast.LENGTH_LONG).show();
     }
   }
 }

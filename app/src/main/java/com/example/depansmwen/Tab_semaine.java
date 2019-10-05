@@ -13,43 +13,44 @@ import java.util.ArrayList;
 
 public class Tab_semaine extends Fragment {
 
+
     AccesLocal accesLocal;
 
     private ArrayList<InformationToday> allInformationsToday = new ArrayList<>();
     private InformationTodayAdapter monAdapter;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView1;
     LinearLayoutManager linearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-        View v   =inflater.inflate(R.layout.tab_semaine,container,false);
+        View rootView   =inflater.inflate(R.layout.tab_semaine,container,false);
 
         accesLocal = new AccesLocal(this.getContext());
-        recyclerView = (RecyclerView) v.findViewById(R.id.IdRecycleView);
+        recyclerView1 = (RecyclerView) rootView.findViewById(R.id.IdRecycleView3);
         linearLayoutManager = new LinearLayoutManager(this.getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
+        recyclerView1.setLayoutManager(linearLayoutManager);
+//    recyclerView1.setHasFixedSize(true);
+
         allInformationsToday = accesLocal.ListInformationSemaineFromBd();
         if (allInformationsToday.size() > 0){
-            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView1.setVisibility(View.VISIBLE);
             monAdapter = new InformationTodayAdapter(this.getContext(), allInformationsToday);
-            recyclerView.setAdapter(monAdapter);
+            recyclerView1.setAdapter(monAdapter);
         }else{
-            recyclerView.setVisibility(View.GONE);
-            Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees!", Toast.LENGTH_LONG).show();
+            recyclerView1.setVisibility(View.GONE);
         }
-        return v;
+        return rootView;
     }
 
-    public void refreshTabSemaine(){
+    public  void refreshTabSemaine(){
         allInformationsToday = accesLocal.ListInformationSemaineFromBd();
         if (allInformationsToday.size() > 0){
-            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView1.setVisibility(View.VISIBLE);
             monAdapter = new InformationTodayAdapter(this.getContext(), allInformationsToday);
-            recyclerView.setAdapter(monAdapter);
+            recyclerView1.setAdapter(monAdapter);
         }else{
-            recyclerView.setVisibility(View.GONE);
-            Toast.makeText(this.getContext(), "Il n'a pas d'enregistrement de depense dans la base de donnees!", Toast.LENGTH_LONG).show();
+            recyclerView1.setVisibility(View.GONE);
         }
     }
 }
+

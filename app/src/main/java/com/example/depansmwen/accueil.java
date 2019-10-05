@@ -127,20 +127,13 @@ public class accueil extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-
         log = new Dologin(accueil.this);
         log.execute();
-
         setContentView(R.layout.accueil1);
         loadLocale();
-
-
-
       //  getSupportActionBar().hide();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         // This will display an Up icon (<-), we will replace it with hamburger later
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Find our drawer view
@@ -155,24 +148,17 @@ public class accueil extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
-
-
-
         //Add
         spinnercompte = (Spinner) findViewById(R.id.spinnercompte);
-
-
         accesLocal = new AccesLocal(accueil.this);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
         sdf = new SimpleDateFormat("yyyy.MM.dd");
         currentDateandTime = sdf.format(new Date());
         loadSpinnerData1();
-
         floatingMenuBtn =findViewById(R.id.floatingMenuBtn);
        // floatingMenuBtn.setMenuButtonColorNormal(R.color.colorAccent);
         act1 = findViewById(R.id.act1);
@@ -181,14 +167,8 @@ public class accueil extends AppCompatActivity {
         act2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Ajouter_categorie();
                 floatingMenuBtn.close(true);
-
-
-                //floatingMenuBtn.hideMenuButton(true);
-
-
             }
         });
         act3.setOnClickListener(new View.OnClickListener() {
@@ -219,10 +199,10 @@ public class accueil extends AppCompatActivity {
                         String note= etNote.getEditText().getText().toString();
                         String compte=String.valueOf(spinnerCompte.getSelectedItem());
 
-                        if (prix.equals("") || note.equals("")){
+                        if (prix.equals("") || prix.equals("0") || prix.equals("0.0") || prix.equals(".") || Double.parseDouble(prix) < 1 || note.equals("")){
                             Toast.makeText(accueil.this, R.string.remplirleschan, Toast.LENGTH_SHORT).show();
                         }else if(spinnerCompte.getCount()==0){
-                            Toast.makeText(accueil.this, " Veuillez Initialiser le compte Cash!!!\n dans Parametre/Visualiser/Activer Compte", Toast.LENGTH_LONG).show();
+                            Toast.makeText(accueil.this, " Veuillez Initialiser ou creer des comptes \n dans Parametre/Visualiser/Activer Compte", Toast.LENGTH_LONG).show();
 
                         }else{
                             Double soldeBase = accesLocal.SoldeCompte(compte);
@@ -235,32 +215,23 @@ public class accueil extends AppCompatActivity {
                                 if (insert == true) {
                                     Toast.makeText(accueil.this, R.string.enregis_succes, Toast.LENGTH_SHORT).show();
                                     tab_auj.refreshTabAujourdhui();
-                                    tab_auj.AlldepenseToday();
                                     tab_sem.refreshTabSemaine();
+                                    //tab_m.refreshTabMois();
                                     log = new Dologin(accueil.this);
                                     log.execute();
                                     dialog.cancel();
-                                    //Alldepense();
                                 } else {
                                     Toast.makeText(accueil.this, R.string.operEchou, Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else{
-                                AlertDialog.Builder buil=new AlertDialog.Builder(accueil.this);
-                                buil.setMessage("Vous n'avez suffisament d'argent sur ce compte Veuillez changer de compte ou Ajoutez d'argent");
-                                buil.setIcon(R.drawable.ic_warning_black_24dp);
-                                buil.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
-                                    }
-                                });
-                                AlertDialog b=buil.create();
-                                b.show();
+                                View viewError = getLayoutInflater().inflate(R.layout.lay_error_argentinsu,null);
+                                final AlertDialog.Builder alertError = new AlertDialog.Builder(accueil.this);
+                                alertError.setView(viewError);
+                                final AlertDialog dialogError = alertError.create();
+                                dialogError.show();
                             }
                         }
-
-
                     }
                 });
 
@@ -272,8 +243,6 @@ public class accueil extends AppCompatActivity {
     }
 
     private void loadSpinnerData1() {
-
-
         List<String> labels = accesLocal.getAllSpinners1();
         List<String> labels1 = accesLocal.getAllSpinnerscompte1();
         // Creating adapter for spinner
@@ -336,6 +305,7 @@ public class accueil extends AppCompatActivity {
                 case 1:
                      tab_sem = new Tab_semaine();
                     return tab_sem;
+
                 case 2:
                      tab_m = new Tab_mois();
                     return tab_m;
@@ -348,6 +318,7 @@ public class accueil extends AppCompatActivity {
 
         @Override
         public int getCount() {
+
             return 3;
         }
 
@@ -357,7 +328,6 @@ public class accueil extends AppCompatActivity {
             switch (position){
                 case 0:
                     res = getResources();
-                    //myTextView.setText(Html.fromHtml("Ce <b>texte</b> contient des <b>mots</b> très <b>importants</b>"));
                     return res.getString(R.string.jour);
                 case 1:
                      return res.getString(R.string.semaine);
@@ -376,7 +346,6 @@ public class accueil extends AppCompatActivity {
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
         search(searchView);
-
         return true;
     }
     private void search(SearchView searchView) {
@@ -395,16 +364,13 @@ public class accueil extends AppCompatActivity {
 
 //                tab_m.textRecherche(newText);
 //                tab_m.GestionRecherche();
-//
+
 //                tab_sem.textRecherche(newText);
 //                tab_sem.GestionRecherche();
                 return true;
             }
         });
     }
-
-
-
 
     private void loadSpinnerData() {
         List<String> labels = accesLocal.getAllSpinners();
@@ -453,7 +419,6 @@ public class accueil extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
     public void selectDrawerItem(MenuItem menuItem) {
-        Parametre param=new Parametre();
         switch(menuItem.getItemId()) {
             case R.id.addCategorie:
                Ajouter_categorie();
@@ -983,21 +948,13 @@ public class accueil extends AppCompatActivity {
         NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1,notif.build());
 
-
-
-
     }
 
 
 
     private void savePdf() {
-        // Verifier si user sa a gen element nan ki anrejistre deja sinon lpral save yon rapport ki vide
-        //donk pou sa nap eseye al verifye eske li gen omwen yon grenn element deja ann suiv sak pral fet la. lajan pam li ye tonton
-        //eske nou la regade byen
-//        boolean tr = accesLocal.checkUser(user.userName());
-        if (Mylist.size()<=0) {
-            Toast.makeText(accueil.this, "Vous ne pouvez pas exporter de Rapport" +
-                    " sans rien enregistrer !!",Toast.LENGTH_LONG).show();
+ if (Mylist.size()<=0) {
+            Toast.makeText(accueil.this, R.string.rienEnregistre,Toast.LENGTH_LONG).show();
         }else
         {
 
@@ -1080,11 +1037,12 @@ public class accueil extends AppCompatActivity {
 
                 View v = getLayoutInflater().inflate(R.layout.layout_pdf,null);
                 AlertDialog.Builder ad=new AlertDialog.Builder(accueil.this);
+                TextView tv_pdf=v.findViewById(R.id.tv_pdf);
                 ad.setView(v);
                 final AlertDialog a=ad.create();
                 // Environment.getExternalStorageDirectory()
-                a.setMessage("Path: Phone/Rapports_LajanPam/"+ pdfname);
-
+                tv_pdf.setText("Path:" +Environment.getExternalStorageDirectory()+"/Rapports_LajanPam/"+ pdfname);
+               // a.setMessage("Path:" +Environment.getExternalStorageDirectory()+"/Rapports_LajanPam/"+ pdfname);
                 a.show();
 
 
@@ -1099,12 +1057,14 @@ public class accueil extends AppCompatActivity {
      class Dologin extends AsyncTask {
         MySqlLiteOpenHelper accesBd1;
         SQLiteDatabase bd;
+        Tab_semaine Ts;
 
 
         public Dologin(Context context){
             accesBd1 = new MySqlLiteOpenHelper(context,"bdDepansMwen.sqlite", null, 10);
             bd = accesBd1.getReadableDatabase();
           //  Toast.makeText(accueil.this,"Dologin",Toast.LENGTH_SHORT).show();
+
         }
         @Override
         protected Object doInBackground(Object[] objects) {
@@ -1127,7 +1087,6 @@ public class accueil extends AppCompatActivity {
                     prepare_rapport.setPrix_total(String.valueOf(allDepense));
 
                     Mylist.add(prepare_rapport);
-//                    prepare_rapport = new Prepare_Rapport();
                 }while (cursor.moveToPrevious());
             }
             cursor.close();
@@ -1135,6 +1094,8 @@ public class accueil extends AppCompatActivity {
             return null;
         }
 
+
     }
+
 
 }

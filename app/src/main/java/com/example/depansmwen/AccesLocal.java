@@ -3,8 +3,11 @@ package com.example.depansmwen;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.widget.Toast;
 
 
 import com.example.depansmwen.Database.MySqlLiteOpenHelper;
@@ -24,6 +27,8 @@ public class AccesLocal extends Activity {
     static MainActivity user;
     Prepare_Rapport prepare_rapport ;
     ArrayList<Prepare_Rapport> Mylist;
+    String [] cat ;
+    Resources res;
 
     public AccesLocal(Context context) {
         accesBd = new MySqlLiteOpenHelper(context, nomBase, null, versionBase);
@@ -31,6 +36,11 @@ public class AccesLocal extends Activity {
         currentDateandTime = sdf.format(new Date());
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cat = getResources().getStringArray(R.array.spincategorie);
+    }
 
     public boolean signup(String nom, String prenom, String username, String password){
         bd = accesBd.getWritableDatabase();
@@ -178,8 +188,9 @@ public class AccesLocal extends Activity {
                 String montantBase = cursor.getString(1);
                 String deviseBase = cursor.getString(2);
                 String noteBase = cursor.getString(3);
+                String date = cursor.getString(4);
                 int id = cursor.getInt(6);
-                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase,id));
+                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase,id,date));
             }while (cursor.moveToPrevious());
         }
         cursor.close();
@@ -188,7 +199,7 @@ public class AccesLocal extends Activity {
 
     public ArrayList<InformationToday> ListInformationSemaineFromBd(){
         bd = accesBd.getReadableDatabase();
-        String sql = "select * from TableCategorie9";
+        String sql = "select * from TableCategorie9 where user='"+user.userName().toString()+"'";
         ArrayList<InformationToday> list = new ArrayList<>();
         Cursor cursor = bd.rawQuery(sql, null);
         if(cursor.moveToLast()){
@@ -197,8 +208,9 @@ public class AccesLocal extends Activity {
                 String montantBase = cursor.getString(1);
                 String deviseBase = cursor.getString(2);
                 String noteBase = cursor.getString(3);
+                String date = cursor.getString(4);
                 int id = cursor.getInt(6);
-                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase,id));
+                list.add(new InformationToday(categorieBase, montantBase, deviseBase, noteBase,id,date));
             }while (cursor.moveToPrevious());
         }
         cursor.close();
@@ -232,6 +244,11 @@ public class AccesLocal extends Activity {
 
     public List<String> getAllSpinners1(){
         List<String> list = new ArrayList<String>();
+//        for(int i=0;i<cat.length;i++){
+//            list.add(cat[i]);
+//        }
+//        accueil acc=new accueil();
+//        String [] tab=acc.tabcatspin();
         list.add("Transport");
         list.add("Sante");
         list.add("Nourriture");
@@ -453,21 +470,50 @@ public class AccesLocal extends Activity {
 
 //// derniere methode rapport
 
-    public double rapportJourSemaineMois(String categorie,String group,String CompteSelected){
-        double prixtotal=0.0;
-        String grouppar=group;
+    public double rapportJourCat(String categorie,String CompteSelected){
+        double prixtotaljourcat=0.0;
         // Select All Query
-        String selectQuery="";
-        if(grouppar.equalsIgnoreCase("Aujourdhui")) {
-            selectQuery="SELECT  * FROM TableCategorie9 where user= '" + String.valueOf(user.userName()) + "' and categorie='" + categorie + "' and date = '" + currentDateandTime + "' and devise = '"+CompteSelected+"'";
-        }
-         else  {
-            selectQuery = "SELECT  * FROM TableCategorie9 where user= '" + String.valueOf(user.userName()) + "' and categorie='"+categorie+"' and devise = '"+CompteSelected+"'";
-        }
-
-
+        String selectQuery="SELECT  * FROM TableCategorie9 where user= '" + String.valueOf(user.userName()) + "' and categorie='" + categorie + "' and date = '" + currentDateandTime + "' and devise = '"+CompteSelected+"'";
          bd = accesBd.getReadableDatabase();
          Cursor cursor = bd.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+        // looping through all rows and adding to list
+        if(cursor.moveToLast()){
+            do {
+                String prix1 = cursor.getString(1);
+                prixtotaljourcat += Double.parseDouble(prix1);
+            }while (cursor.moveToPrevious());
+        }        // closing connection
+        cursor.close();
+        bd.close();
+        // returning lables
+        return prixtotaljourcat;
+    }
+
+    public double rapportSemaineTotalCat(String categorie,String CompteSelected){
+        double prixtotalSemCat=0.0;
+        // Select All Query
+        String selectQuery = "SELECT  * FROM TableCategorie9 where user= '" + String.valueOf(user.userName()) + "' and categorie='"+categorie+"' and devise = '"+CompteSelected+"'";
+         bd = accesBd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+        // looping through all rows and adding to list
+        if(cursor.moveToLast()){
+            do {
+                String prix1 = cursor.getString(1);
+                prixtotalSemCat += Double.parseDouble(prix1);
+            }while (cursor.moveToPrevious());
+        }        // closing connection
+        cursor.close();
+        bd.close();
+        // returning lables
+        return prixtotalSemCat;
+    }
+
+    public double rapportJourTcomptTCat(){
+        double prixtotal=0.0;
+        // Select All Query
+        String selectQuery = "SELECT  * FROM TableCategorie9 where user= '" + String.valueOf(user.userName()) + "'";
+        bd = accesBd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery(selectQuery, null);//selectQuery,selectedArguments
         // looping through all rows and adding to list
         if(cursor.moveToLast()){
             do {
@@ -500,6 +546,29 @@ public class AccesLocal extends Activity {
             cursor.close();
             bd.close();
             // returning lables
+
+        return solde;
+    }
+
+    public double SoldeAllCompte(){
+        double solde=0.0;
+        // Select All Query
+        String selectQuery="";
+
+        selectQuery="SELECT  * FROM TableEnregistreCompte9 where user= '" + String.valueOf(user.userName())+"'";
+
+
+        bd = accesBd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+        // looping through all rows and adding to list
+        if (cursor.moveToLast()) {
+            do {
+                String s = cursor.getString(5);
+                solde += Double.parseDouble(s);
+            }while (cursor.moveToPrevious());
+        }        // closing connection
+        cursor.close();
+        bd.close();
 
         return solde;
     }

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="15dp"
-            android:text="Compte" />
+            android:text="@string/titre_compte" />
 
         <EditText
             android:id="@+id/editbank"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="15dp"
-            android:text="Solde" />
+            android:text="@string/text_solde" />
 
         <EditText
             android:id="@+id/edit_solde"
