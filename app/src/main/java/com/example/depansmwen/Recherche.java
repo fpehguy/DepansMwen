@@ -11,6 +11,6 @@ public class Recherche extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recherche);
-        Button btn = findViewById(R.id.buttonoui);
+       // Button btn = findViewById(R.id.buttonoui);
     }
 }
